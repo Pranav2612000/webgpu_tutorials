@@ -26,21 +26,12 @@
               @builtin(vertex_index) vertexIndex: u32
             ) -> @builtin(position) vec4f {
               let pos = array(
-                vec2f(0.0, 0.5),
-                vec2f(-0.5, -0.5),
-                vec2f(0.5, -0.5)
-              );
-
-              return vec4f(pos[vertexIndex], 0.0, 1.0);
-            }
-
-            @vertex fn jvertices_inverted(
-              @builtin(vertex_index) vertexIndex: u32
-            ) -> @builtin(position) vec4f {
-              let pos = array(
-                vec2f(0.0, 0.5),
-                vec2f(-0.5, -0.5),
-                vec2f(0.5, -0.5)
+                vec2f(0.0, 1.0),
+                vec2f(-0.5, 0.0),
+                vec2f(0.5, 0.0),
+                vec2f(0.0, -1.0),
+                vec2f(-0.5, 0.0),
+                vec2f(0.5, 0.0)
               );
 
               return vec4f(pos[vertexIndex], 0.0, 1.0);
@@ -74,7 +65,7 @@
               clearValue: [0.3, 0.3, 0.3, 1],
               loadOp: 'clear',
               storeOp: 'store',
-            }
+            },
           ]
         };
 
@@ -86,7 +77,7 @@
 
           const pass = encoder.beginRenderPass(renderPassDescriptor);
           pass.setPipeline(pipeline);
-          pass.draw(3);
+          pass.draw(6);
           pass.end();
 
           const commandBuffer = encoder.finish();
